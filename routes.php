@@ -18,7 +18,20 @@ if (isset($_GET['page'])) {
             break; 
         case 'lokasidelete':
             file_exists('pages/admin/lokasidelete.php') ? include 'pages/admin/lokasidelete.php': include "pages/404.php";
+            break;
+            
+        case 'jabatanread':
+            file_exists('pages/admin/jabatan/jabatanread.php') ? include 'pages/admin/jabatan/jabatanread.php': include "pages/404.php";
+            break;       
+        case 'jabatancreate':
+            file_exists('pages/admin/lokasicreate.php') ? include 'pages/admin/lokasicreate.php': include "pages/404.php";
             break; 
+        case 'jabatanupdate':
+            file_exists('pages/admin/lokasiupdate.php') ? include 'pages/admin/lokasiupdate.php': include "pages/404.php";
+            break; 
+        case 'jabatandelete':
+            file_exists('pages/admin/lokasidelete.php') ? include 'pages/admin/lokasidelete.php': include "pages/404.php";
+            break;     
         default:
             include "pages/404.php";
         }
