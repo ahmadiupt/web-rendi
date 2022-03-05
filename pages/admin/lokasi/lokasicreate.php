@@ -12,14 +12,14 @@ if (isset($_POST['button_create'])){
         <div class="alert alert-danger alert-dismissible">
         <button class="close" type ="button" data-dismiss="alert" aria-hidden ="true">X</button>
         <h5><i class="icon fas fa-ban"> Gagal</i></h5>
-        Nama Lokasi sudah ada"
+        Nama Lokasi sudah ada
         </div>
       <?php
     } else {
 
         $insertSql = "INSERT INTO lokasi SET nama_lokasi = ?";
         $stmt = $db->prepare($insertSql);
-        $stmt = bindParam(1,$_POST['nama_lokasi']);
+        $stmt->bindParam(1,$_POST['nama_lokasi']);
         if ($stmt->execute()){
            $_SESSION['hasil'] = true;
            $_SESSION['pesan'] = "Berhasil Simpan Data";

@@ -79,9 +79,10 @@ if (isset($_GET['id'])){
     </section>
 <?php
     } else {
-        // echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
     }
 } else {
-    // echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+    echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
 }
+include_once "partials/scripts.php";
 ?>

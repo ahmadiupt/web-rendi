@@ -27,12 +27,12 @@
           ?>
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Jabatan</h1>
+            <h1 class="m-0">bagian</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Jabatan</li>
+              <li class="breadcrumb-item active">bagian</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -44,18 +44,17 @@
     <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"> Data Jabatan</h3>
-            <a href="?page=jabatancreate" class="btn btn-success btn-sm float-right"><i class="fa fa-plus-circle"></i> Tambah Data</a>
+            <h3 class="card-title"> Data bagian</h3>
+            <a href="?page=bagiancreate" class="btn btn-success btn-sm float-right"><i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <div class="card-body">
             <table id="mytable" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Jabatan</th>
-                        <th>Gapok</th>
-                        <th>Tunjangan</th>
-                        <th>Uang Makan</th>
+                        <th>Nama Bagian</th>
+                        <th>Kepala Bagian</th>
+                        <th>Lokasi</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -63,7 +62,7 @@
                 <?php 
                 $database = new Database();
                 $db = $database->getConnection();
-                $selectSql = "select * from jabatan";
+                $selectSql = "SELECT b.nama_bagian,k.nama_lengkap as kepala_bagian,l.nama_lokasi as lokasi_bagian from bagian b LEFT JOIN karyawan k ON b.karyawan_id = k.id LEFT JOIN lokasi l ON b.lokasi_id = l.id";
                 $stmt = $db->prepare($selectSql);
                 $stmt->execute();
                 $no=1;
@@ -71,15 +70,14 @@
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['nama_jabatan']?></td>
-                        <td style="text-align:right"><?php echo number_format($row['gapok_jabatan'])?></td>
-                        <td style="text-align:right"><?php echo number_format($row['tunjangan_jabatan'])?></td>
-                        <td style="text-align:right"><?php echo number_format($row['uang_makan_perhari'])?></td>
+                        <td><?php echo $row['nama_bagian']?></td>
+                        <td><?php echo $row['kepala_bagian']?></td>
+                        <td><?php echo $row['lokasi_bagian']?></td>
                         <td>
                             <form action="" class="POST">
                                 <input type="hidden" name="id" value="<?php echo $row['id']?>">
-                                <a href="?page=jabatanupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-edit"></i> Ubah</a>
-                                <a href="?page=jabatandelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?')"><i class="fa fa-trash"></i> Hapus</a>
+                                <a href="?page=bagianupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-edit"></i> Ubah</a>
+                                <a href="?page=bagiandelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm" onClick="javascript: return confirm('Konfirmasi data akan dihapus?')"><i class="fa fa-trash"></i> Hapus</a>
                             </form>
                         </td>
                     </tr>
