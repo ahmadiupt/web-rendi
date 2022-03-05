@@ -62,7 +62,7 @@
                 <?php 
                 $database = new Database();
                 $db = $database->getConnection();
-                $selectSql = "SELECT b.nama_bagian,k.nama_lengkap as kepala_bagian,l.nama_lokasi as lokasi_bagian from bagian b LEFT JOIN karyawan k ON b.karyawan_id = k.id LEFT JOIN lokasi l ON b.lokasi_id = l.id";
+                $selectSql = "SELECT b.id,b.nama_bagian,k.nama_lengkap as kepala_bagian,l.nama_lokasi as lokasi_bagian from bagian b LEFT JOIN karyawan k ON b.karyawan_id = k.id LEFT JOIN lokasi l ON b.lokasi_id = l.id";
                 $stmt = $db->prepare($selectSql);
                 $stmt->execute();
                 $no=1;
