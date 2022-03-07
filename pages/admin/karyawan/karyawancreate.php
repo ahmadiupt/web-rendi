@@ -16,9 +16,9 @@ if (isset($_POST['button_create'])){
         </div>
       <?php
     } else {
-        $sql = "select * from karyawan where username = ?";
+        $sql = "select * from karyawan where nama_lengkap = ?";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(1,$_POST['username']);
+        $stmt->bindParam(1,$_POST['nama_lengkap']);
         $stmt->execute();
         if($stmt->rowCount() > 0){
             ?>  
@@ -47,15 +47,15 @@ if (isset($_POST['button_create'])){
                 $stmt->bindParam(3,$_POST['peran']);
 
                 if($stmt->execute()){
-                    $pengguna_id =$db->lastInsertId();
-                    $insertSql = "INSERT INTO karyawan VALUES(NULL,?,?,?,?,?,?)";
-                    $stmt = $db->prepare($insertSql);
+                    $pengguna_id = $db->lastInsertId();
+                    $insertkar = "INSERT INTO karyawan VALUES(NULL,?,?,?,?,?,?)";
+                    $stmt = $db->prepare($insertkar);
                     $stmt->bindParam(1,$_POST['nik']);
                     $stmt->bindParam(2,$_POST['nama_lengkap']);
                     $stmt->bindParam(3,$_POST['handphone']);
                     $stmt->bindParam(4,$_POST['email']);
                     $stmt->bindParam(5,$_POST['tanggal_masuk']);
-                    $stmt->bindParam(6,$_POST['$pengguna_id']);
+                    $stmt->bindParam(6,$pengguna_id);
                     if ($stmt->execute()){
                        $_SESSION['hasil'] = true;
                        $_SESSION['pesan'] = "Berhasil Simpan Data";
